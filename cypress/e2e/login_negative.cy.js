@@ -14,6 +14,10 @@ describe('Negative Login Test',()=>{
     })
     it('TC-LOGIN-004:Empty uername and valid Password',()=>{
         cy.visit('/')
-        login.loginInvalid('null',Cypress.env('PASSWORD'))
+        login.loginInvalid('',Cypress.env('PASSWORD'))
+    })
+    it('TC-LOGIN-005:Valid username and empty password', ()=>{
+        cy.visit('/')
+        login.loginInvalid(Cypress.env('USERNAME',''))
     })
 })
