@@ -1,11 +1,19 @@
 export default class LoginPage {
-  userNameLocator = "#user-name"
+  userNameLocator = "[placeholder='Username']"
   passwordLocator = "#password"
   loginButtonLocator = "#login-button"
+  errorLocator='.error-button'
 
   loginn(username, password) {
     cy.get(this.userNameLocator).clear().type(username).should('have.value', username)
     cy.get(this.passwordLocator).clear().type(password).should('have.value', password)
     cy.get(this.loginButtonLocator).click()
+
+  }
+  loginInvalid(username,password){
+    cy.get(this.userNameLocator).clear().type(username).should('have.value', username)
+    cy.get(this.passwordLocator).clear().type(password).should('have.value', password)
+    cy.get(this.loginButtonLocator).click()
+    cy.get(this.errorLocator).should('be.visible', 'Username and password do not match any user in this service.')
   }
 }
