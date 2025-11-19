@@ -10,7 +10,7 @@ describe('For Header Section',()=>{
     it('TC-HEADER-001:To verify users can view the heading',()=>{
         headerr.forTitle()
     })
-    it('TC-HEADER-002: To verify user can view cart icon',()=>{
+    it('TC-HEADER-002: To verify user can view cart icon and hover it',()=>{
         headerr.forCartIcon()
     })
     it('TC-HEADER-003: To verify user can view menu icon and hover it', ()=>{
