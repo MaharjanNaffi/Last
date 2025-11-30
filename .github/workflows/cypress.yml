@@ -41,9 +41,9 @@ jobs:
       - name: 📊 Merge JSON & Generate Mochawesome HTML Report
         if: always()
         run: |
-            npx mochawesome-merge "cypress/reports/*.json" > cypress/reports/merged-report.json
-             npx mochawesome-report-generator cypress/reports/merged-report.json -o cypress/reports -f merged-report
-                  continue-on-error: true
+          npx mochawesome-merge cypress/reports/*.json -o cypress/reports/merged-report.json
+          npx mochawesome-report-generator cypress/reports/merged-report.json -o cypress/reports -f merged-report
+        continue-on-error: true
 
 
       - name: 📤 Upload Test Report as Artifact

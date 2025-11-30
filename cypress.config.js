@@ -4,7 +4,7 @@ require('dotenv').config();
 module.exports = defineConfig({
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
-    reportDir: "cypress/results",  
+    reportDir: "cypress/reports",  
     overwrite: false,
     html: true, 
     json: true,
@@ -20,7 +20,6 @@ module.exports = defineConfig({
       PASSWORD: process.env.PASSWORD,
     },
     setupNodeEvents(on, config) {
-      require("cypress-mochawesome-reporter/plugin")(on);
       return config;
     },
   },
