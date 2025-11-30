@@ -1,0 +1,95 @@
+name: SUCE Demo - Full Cypress CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "30 6 * * *" # Daily 12:15 PM Nepali Time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+      CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
+      CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🧪 Run Cypress Tests
+        run: npx cypress run
+        continue-on-error: true
+
+      - name: 📊 Merge JSON & Generate Mochawesome HTML Report
+        if: always()
+        run: |
+          npx mochawesome-merge cypress/reports/*.json > cypress/reports/suce-report.json
+          npx marge cypress/reports/suce-report.json --reportDir cypress/reports --reportFilename index.html
+        continue-on-error: true
+
+      - name: 📤 Upload Test Report as Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: SUCE-Demo-Test-Report-${{ github.run_number }}
+          path: cypress/reports/
+          retention-days: 30
+
+      - name: 📧 Send Email with Test Report
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "SUCE Demo – Cypress Report (Run #${{ github.run_number }}) – ${{ job.status }}"
+          body: |
+            SUCE Demo Automation Report
+
+            Run Number: #${{ github.run_number }}
+            Status: ${{ job.status }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+
+            Test report is attached and available in the Actions Artifacts.
+          from: ${{ secrets.EMAIL_USERNAME }}
+          to: ${{ secrets.EMAIL_USERNAME }}
+          attachments: cypress/reports/index.html
+
+      - name: ❌ Auto-Close PR on Test Failure
+        if: failure() && github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --body "❌ Cypress tests failed for this PR. The PR is being closed automatically. Please review the test report and fix issues."
+          gh pr close ${{ github.event.pull_request.number }}
+        continue-on-error: true
+
+      - name: ✅ Auto-Merge PR on Successful Tests
+        if: success() && github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --merge --auto
+          echo "PR #${{ github.event.pull_request.number }} merged successfully."
+        continue-on-error: true
