@@ -5,7 +5,7 @@ module.exports = defineConfig({
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     reportDir: "cypress/results",  // JSON folder for merge
-    reportFilename: "report",
+    reportFilename: "sauce-report",
     overwrite: false,
     html: false,  // Disable individual HTML files
     json: true
