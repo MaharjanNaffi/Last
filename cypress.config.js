@@ -4,11 +4,13 @@ require('dotenv').config();
 module.exports = defineConfig({
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
-    reportDir: "cypress/results",  // JSON folder for merge
-    reportFilename: "sauce-report",
+    reportDir: "cypress/results",  
     overwrite: false,
-    html: false,  // Disable individual HTML files
-    json: true
+    html: true, 
+    json: true,
+    chart: true,
+    embeddedScreenshots: true,
+    inlineAssets: true,
   },
 
   e2e: {
