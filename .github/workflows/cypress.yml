@@ -19,8 +19,8 @@ jobs:
 
     env:
       CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
-      CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
-      CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+      CYPRESS_USERNAME: ${{ secrets.USERNAME }}
+      CYPRESS_PASSWORD: ${{ secrets.PASSWORD }}
 
     steps:
       - name: 📥 Checkout Repository

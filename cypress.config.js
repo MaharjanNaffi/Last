@@ -14,8 +14,8 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: process.env.CYPRESS_BASE_URL,
     env: {
-      USERNAME: process.env.CYPRESS_USERNAME,
-      PASSWORD: process.env.CYPRESS_PASSWORD,
+      USERNAME: process.env.USERNAME,
+      PASSWORD: process.env.PASSWORD,
     },
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
