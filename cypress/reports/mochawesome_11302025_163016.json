@@ -1,0 +1,146 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-11-30T10:45:09.974Z",
+    "end": "2025-11-30T10:45:16.019Z",
+    "duration": 6045,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2831933f-9017-44d8-b969-a65d067cf575",
+      "title": "",
+      "fullFile": "cypress\\e2e\\header.cy.js",
+      "file": "cypress\\e2e\\header.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ce1ee553-90ec-4486-93ad-15e0f3e95dc7",
+          "title": "For Header Section",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC-HEADER-001:To verify users can view the heading",
+              "fullTitle": "For Header Section TC-HEADER-001:To verify users can view the heading",
+              "timedOut": null,
+              "duration": 3361,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "headerr.forTitle();",
+              "err": {},
+              "uuid": "8a1e6611-587c-4ec1-b983-7be4a60b4fd4",
+              "parentUUID": "ce1ee553-90ec-4486-93ad-15e0f3e95dc7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-HEADER-002: To verify user can view cart icon and hover it",
+              "fullTitle": "For Header Section TC-HEADER-002: To verify user can view cart icon and hover it",
+              "timedOut": null,
+              "duration": 1195,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "headerr.forCartIcon();",
+              "err": {},
+              "uuid": "0d1c1402-321f-4440-b9d2-87532a4f7578",
+              "parentUUID": "ce1ee553-90ec-4486-93ad-15e0f3e95dc7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-HEADER-003: To verify user can view menu icon and hover it",
+              "fullTitle": "For Header Section TC-HEADER-003: To verify user can view menu icon and hover it",
+              "timedOut": null,
+              "duration": 1329,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "headerr.forMenu();",
+              "err": {},
+              "uuid": "ffeed663-2317-45db-bb39-d77bf64ec820",
+              "parentUUID": "ce1ee553-90ec-4486-93ad-15e0f3e95dc7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8a1e6611-587c-4ec1-b983-7be4a60b4fd4",
+            "0d1c1402-321f-4440-b9d2-87532a4f7578",
+            "ffeed663-2317-45db-bb39-d77bf64ec820"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5885,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "saveHtml": false,
+        "saveJson": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
